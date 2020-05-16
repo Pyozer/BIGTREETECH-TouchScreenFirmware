@@ -269,6 +269,7 @@ void menuHeat(void)
             }
             encoderPosition = 0;
           }
+          loopCheckEncoderSteps();
         #endif
         break;
     }

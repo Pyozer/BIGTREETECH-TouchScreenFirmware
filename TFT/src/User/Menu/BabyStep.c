@@ -123,6 +123,7 @@ void menuBabyStep(void)
             baby_step_value += elementsUnit.ele[elementsUnit.cur]*encoderPosition;
             encoderPosition = 0;
           }
+          loopCheckEncoderSteps();
         #endif
         break;
       }

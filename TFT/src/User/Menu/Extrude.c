@@ -121,6 +121,7 @@ void menuExtrude(void)
             eTemp += item_len[item_len_i]*encoderPosition;
             encoderPosition = 0;
           }
+          loopCheckEncoderSteps();
         #endif
         break;
     }

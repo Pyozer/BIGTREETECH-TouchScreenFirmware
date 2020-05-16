@@ -148,6 +148,7 @@ void menuSpeed(void)
             }
             encoderPosition = 0;
           }
+          loopCheckEncoderSteps();
         #endif
       break;
     }

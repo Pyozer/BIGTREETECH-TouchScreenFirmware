@@ -113,10 +113,11 @@ void menuProbeOffset(void)
         #if LCD_ENCODER_SUPPORT
           if(encoderPosition)
           {
-            storeCmd("M851 Z%.2f\n",probe_offset_value+elementsUnit.ele[elementsUnit.cur]*encoderPosition);																				
+            storeCmd("M851 Z%.2f\n",probe_offset_value+elementsUnit.ele[elementsUnit.cur]*encoderPosition);
             probe_offset_value += elementsUnit.ele[elementsUnit.cur]*encoderPosition;
             encoderPosition = 0;
           }
+          loopCheckEncoderSteps();
         #endif
         break;
       }

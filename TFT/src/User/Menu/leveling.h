@@ -3,5 +3,6 @@
 
 void menuManualLeveling(void);
 void menuAutoLeveling(void);
+void menuMblLeveling(void);
 
 #endif

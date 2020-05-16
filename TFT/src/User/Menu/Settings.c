@@ -151,7 +151,7 @@ void initMachineSetting(void){
 
 void setupMachine(void){
   #ifdef AUTO_SAVE_LOAD_LEVELING_VALUE
-    if (infoMachineSettings.autoLevel == 1 && infoMachineSettings.EEPROM == 1){
+    if (infoMachineSettings.levelingData == 1 && infoMachineSettings.EEPROM == 1){
       storeCmd("M420 S1\n");
     }
   #endif

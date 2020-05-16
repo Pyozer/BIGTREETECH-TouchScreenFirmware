@@ -59,6 +59,62 @@ void menuAutoLeveling(void)
   }
 }
 
+const MENUITEMS autoMblItems = {
+// title
+LABEL_MBL,
+// icon                        label
+ {{ICON_LEVELING,              LABEL_MBL_START},
+  {ICON_INC,                   LABEL_MBL_NEXT_POINT},
+  {ICON_Z_INC,                 LABEL_Z_INC},
+  {ICON_Z_DEC,                 LABEL_Z_DEC},
+  //{ICON_PROBE_OFFSET,          LABEL_Z_OFFSET},
+  {ICON_BACKGROUND,            LABEL_BACKGROUND},
+  {ICON_BACKGROUND,            LABEL_BACKGROUND},
+  {ICON_EEPROM_SAVE,           LABEL_EEPROM_SAVE},
+  {ICON_BACK,                  LABEL_BACK},}
+};
+
+void menuMblLeveling(void)
+{
+  KEY_VALUES key_num=KEY_IDLE;
+  menuDrawPage(&autoMblItems);
+  while(infoMenu.menu[infoMenu.cur] == menuMblLeveling)
+  {
+    key_num = menuKeyGetValue();
+    switch(key_num)
+    {
+      case KEY_ICON_0:
+        storeCmd("G29 S4 Z-%.3f\n", LEVELING_POINT_Z_MBL);
+        storeCmd("G29 S1\n");
+        break;
+      case KEY_ICON_1:
+        storeCmd("G29 S2\n");
+        break;
+      case KEY_ICON_2:
+        storeCmd("G91\n");
+        storeCmd("G1 Z+0.02\n");
+        storeCmd("G90\n");
+        break;
+      case KEY_ICON_3:
+        storeCmd("G91\n");
+        storeCmd("G1 Z-0.02\n");
+        storeCmd("G90\n");
+        break;
+       //case KEY_ICON_4:
+        //storeCmd("M851\n");
+        //infoMenu.menu[++infoMenu.cur] = menuProbeOffset;
+        //break;
+      case KEY_ICON_6:
+        storeCmd("G29 S4 Z-%.3f\n", LEVELING_POINT_Z_MBL);
+        storeCmd("M500\n");
+        break;
+      case KEY_ICON_7:
+        infoMenu.cur--; break;
+      default:break;
+    }
+    loopProcess();
+  }
+}
 
 const MENUITEMS manualLevelingItems = {
 // title
@@ -86,9 +142,18 @@ void moveToLevelingPoint(u8 point)
   {
     storeCmd("G28\n");
   }
-  storeCmd("G0 Z%.3f F%d\n", infoSettings.level_z_raise, infoSettings.level_feedrate[Z_AXIS]);
-  storeCmd("G0 X%d Y%d F%d\n", pointPosition[point][0], pointPosition[point][1], infoSettings.level_feedrate[X_AXIS]);
-  storeCmd("G0 Z%.3f F%d\n", infoSettings.level_z_pos, infoSettings.level_feedrate[Z_AXIS]);
+
+  storeCmd("G0 Z%.3f F%d\n", LEVELING_POINT_MOVE_Z, LEVELING_POINT_Z_FEEDRATE);
+  storeCmd("G0 X%d Y%d F%d\n", pointPosition[point][0], pointPosition[point][1], LEVELING_POINT_XY_FEEDRATE);
+
+  if(infoMachineSettings.levelingData == 1)
+  {
+    storeCmd("G0 Z%.3f F%d\n", LEVELING_POINT_Z_MBL, LEVELING_POINT_Z_FEEDRATE);
+  }
+    else
+  {
+     storeCmd("G0 Z%.3f F%d\n", LEVELING_POINT_Z, LEVELING_POINT_Z_FEEDRATE);
+  }
 }
 
 void menuManualLeveling(void)

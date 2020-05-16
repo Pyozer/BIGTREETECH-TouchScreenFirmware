@@ -107,7 +107,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 /**
  * Default Touch Mode Language
@@ -156,8 +156,8 @@
 
 //                       PLA      PETG       ABS
 #define PREHEAT_LABELS    {"PLA",   "PETG",   "ABS"}
-#define PREHEAT_BED      {60,      70,       100}
-#define PREHEAT_HOTEND   {200,     250,      230}
+#define PREHEAT_BED      {60,      80,       100}
+#define PREHEAT_HOTEND   {205,     240,      230}
 
 #define HEAT_MAX_TEMP    {150,    275,       275,       275,       275,       275,       275}    //max temperature can be set
 #define HEAT_SIGN_ID     {"B:",   "T0:",     "T1:",     "T2:",     "T3:",     "T4:",     "T5:"}
@@ -190,13 +190,13 @@
 #define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS 235
-#define Y_MAX_POS 235
-#define Z_MAX_POS 250
+#define X_MAX_POS 300
+#define Y_MAX_POS 300
+#define Z_MAX_POS 400
 
 // Specify a pause position as { X, Y, Z_raise }
-#define NOZZLE_PAUSE_RETRACT_LENGTH 15   // (mm)
-#define NOZZLE_RESUME_PURGE_LENGTH  16   // (mm)
+#define NOZZLE_PAUSE_RETRACT_LENGTH 3   // (mm)
+#define NOZZLE_RESUME_PURGE_LENGTH  4   // (mm)
 #define NOZZLE_PAUSE_X_POSITION     (X_MIN_POS + 10)  // (mm) Must be an integer
 #define NOZZLE_PAUSE_Y_POSITION     (Y_MIN_POS + 10)  // (mm) Must be an integer
 #define NOZZLE_PAUSE_Z_RAISE        20   // (mm)
@@ -212,12 +212,27 @@
  */
 #define AUTO_SAVE_LOAD_LEVELING_VALUE true //to enabled: true | to disabled: false
 
+//Type of Leveling ABL, Meshbedleveling , Manual
+//#define AUTO_LEVELING_ABL
+#define LEVELING_MBL
+//#define MANUAL_LEVELING
+
 /**
  * Manual Leveling
  * Move to four corner points to Leveling manually (Point 1, Point 2, Point 3, Point 4)
  */
 #define LEVELING_EDGE_DISTANCE     20    // Inset distance from bed's edge for calulating leveling point location.
-#define LEVELING_POINT_Z           0.2f  // Z-axis position when nozzle stays for leveling
+#define LEVELING_POINT_Z           0.1f  // Z-axis position when nozzle stays for leveling
+
+#define LEVELING_POINT_Z_MBL       0.1f  // Z-axis position when nozzle stays for manual leveling when MBL activated
+#define LEVELING_POINT_1_X         (X_MIN_POS + 30)
+#define LEVELING_POINT_1_Y         (Y_MIN_POS + 30)
+#define LEVELING_POINT_2_X         (X_MAX_POS - 30)
+#define LEVELING_POINT_2_Y         (Y_MIN_POS + 30)
+#define LEVELING_POINT_3_X         (X_MAX_POS - 30)
+#define LEVELING_POINT_3_Y         (Y_MAX_POS - 30)
+#define LEVELING_POINT_4_X         (X_MIN_POS + 30)
+#define LEVELING_POINT_4_Y         (Y_MAX_POS - 30)
 #define LEVELING_POINT_MOVE_Z      10.0f // Z-axis position when nozzle move to next point
 #define LEVELING_POINT_XY_FEEDRATE 6000  // (mm/min) X and Y axes move feedrate
 #define LEVELING_POINT_Z_FEEDRATE  600   // (mm/min) Z axis move feedrate
