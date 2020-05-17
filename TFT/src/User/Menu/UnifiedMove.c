@@ -36,7 +36,7 @@ void menuUnifiedMove(void)
 
 #ifdef LEVELING_MBL
   if(infoMachineSettings.levelingData == 1){
-    UnifiedMoveItems.items[2].icon = ICON_LEVELING;
+    UnifiedMoveItems.items[2].icon = ICON_MESH_LEVELING;
     UnifiedMoveItems.items[2].label.index = LABEL_MBL;
     UnifiedMoveItems.items[3].icon = ICON_MANUAL_LEVEL;
     UnifiedMoveItems.items[3].label.index = LABEL_LEVELING;

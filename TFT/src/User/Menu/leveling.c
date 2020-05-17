@@ -63,8 +63,8 @@ const MENUITEMS autoMblItems = {
 // title
 LABEL_MBL,
 // icon                        label
- {{ICON_LEVELING,              LABEL_MBL_START},
-  {ICON_INC,                   LABEL_MBL_NEXT_POINT},
+ {{ICON_MESH_LEVELING,         LABEL_MBL_START},
+  {ICON_NEXT,                  LABEL_MBL_NEXT_POINT},
   {ICON_Z_INC,                 LABEL_Z_INC},
   {ICON_Z_DEC,                 LABEL_Z_DEC},
   //{ICON_PROBE_OFFSET,          LABEL_Z_OFFSET},
