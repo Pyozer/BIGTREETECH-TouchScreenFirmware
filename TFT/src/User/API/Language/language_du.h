@@ -187,5 +187,6 @@
     #define DU_300_SECONDS              "5 Min."
     #define DU_CUSTOM_SECONDS           "Custom"
     #define DU_ST7920_FULLSCREEN        "Marlin mode in fullscreen"
+    #define DU_EMPTY                    " "
 
 #endif

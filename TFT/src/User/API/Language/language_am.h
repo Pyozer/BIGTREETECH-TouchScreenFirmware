@@ -187,6 +187,6 @@
     #define AM_300_SECONDS              "5 Min."
     #define AM_CUSTOM_SECONDS           "Custom"
     #define AM_ST7920_FULLSCREEN        "Marlin mode in fullscreen"
-    #define FR_EMPTY                    " "
+    #define AM_EMPTY                    " "
 
 #endif

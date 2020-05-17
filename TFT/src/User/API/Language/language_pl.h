@@ -187,5 +187,6 @@
     #define PL_300_SECONDS              "5 Min."
     #define PL_CUSTOM_SECONDS           "Custom"
     #define PL_ST7920_FULLSCREEN        "Marlin mode in fullscreen"
+    #define PL_EMPTY                    " "
 
 #endif
