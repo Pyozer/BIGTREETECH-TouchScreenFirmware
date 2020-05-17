@@ -135,12 +135,12 @@ void menuRGBSettings(void)
   LABEL_RGB_SETTINGS,
   // icon                       label
   {{ICON_RGB_RED,              LABEL_RED},
-    {ICON_RGB_GREEN,            LABEL_GREEN},
+    {ICON_RGB_PURPLE,           LABEL_PURPLE},
     {ICON_RGB_BLUE,             LABEL_BLUE},
+    {ICON_RGB_CYAN,             LABEL_CYAN},
+    {ICON_RGB_GREEN,            LABEL_GREEN},
+    {ICON_RGB_YELLOW,           LABEL_YELLOW},
     {ICON_RGB_WHITE,            LABEL_WHITE},
-    {ICON_RGB_OFF,              LABEL_OFF},
-    {ICON_BACKGROUND,           LABEL_BACKGROUND},
-    {ICON_BACKGROUND,           LABEL_BACKGROUND},
     {ICON_BACK,                 LABEL_BACK},}
   };
 
@@ -157,20 +157,28 @@ void menuRGBSettings(void)
         storeCmd("M150 R255 U0 B0 P255\n");
         break;
 
-      case KEY_ICON_1:  //Green
-        storeCmd("M150 R0 U255 B0 P255\n");
+      case KEY_ICON_1:  // Purple
+        storeCmd("M150 R255 U0 B255 P255\n"); // PURPLE OK
         break;
 
       case KEY_ICON_2:  //Blue
         storeCmd("M150 R0 U0 B255 P255\n");
         break;
 
-      case KEY_ICON_3:  //White
-        storeCmd("M150 R255 U255 B255 P255\n");
+      case KEY_ICON_3:  //Cyan
+        storeCmd("M150 R0 U255 B255 P255\n");
         break;
 
-      case KEY_ICON_4:  //Turn Off
-        storeCmd("M150 R0 U0 B0 P0\n");
+      case KEY_ICON_4:  //Green
+        storeCmd("M150 R0 U255 B0 P255\n");
+        break;
+
+      case KEY_ICON_5:  //Yellow
+        storeCmd("M150 R255 U255 B0 P255\n");
+        break;
+
+      case KEY_ICON_6:  //White
+        storeCmd("M150 R255 U255 B255 P255\n");
         break;
 
       case KEY_ICON_7:
@@ -192,11 +200,11 @@ void menuMachineSettings(void)
   // title
   LABEL_MACHINE_SETTINGS,
   // icon                       label
-  {{ICON_CUSTOM,               LABEL_CUSTOM},
+  {{ICON_PARAMETER,             LABEL_PARAMETER_SETTING},
     {ICON_RGB_SETTINGS,         LABEL_RGB_SETTINGS},
-    {ICON_GCODE,                LABEL_TERMINAL},
+    {ICON_RGB_OFF,              LABEL_RGB_OFF},
     {ICON_SHUT_DOWN,            LABEL_SHUT_DOWN},
-    {ICON_PARAMETER,            LABEL_PARAMETER_SETTING},
+    {ICON_BACKGROUND,           LABEL_BACKGROUND},
     {ICON_BACKGROUND,           LABEL_BACKGROUND},
     {ICON_BACKGROUND,           LABEL_BACKGROUND},
     {ICON_BACK,                 LABEL_BACK},}
@@ -212,7 +220,8 @@ void menuMachineSettings(void)
     {
 
       case KEY_ICON_0:
-        infoMenu.menu[++infoMenu.cur] =  menuCustom;
+        mustStoreCmd("M503 S0\n");
+        infoMenu.menu[++infoMenu.cur] = menuParameterSettings;
         break;
 
       case KEY_ICON_1:
@@ -220,16 +229,11 @@ void menuMachineSettings(void)
         break;
 
       case KEY_ICON_2:
-        infoMenu.menu[++infoMenu.cur] = menuSendGcode;
+        storeCmd("M150 R0 U0 B0 P0\n"); // Turn off LED
         break;
 
       case KEY_ICON_3:
-        storeCmd("M81\n");
-        break;
-
-      case KEY_ICON_4:
-        mustStoreCmd("M503 S0\n");
-        infoMenu.menu[++infoMenu.cur] = menuParameterSettings;
+        storeCmd("M81\n"); // Shutdown power supply
         break;
 
       case KEY_ICON_7:
