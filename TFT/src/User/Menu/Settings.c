@@ -171,8 +171,8 @@ void menuInfo(void)
                              {0 * LCD_WIDTH / 3, 1 * BYTE_HEIGHT},
                              {1 * LCD_WIDTH / 3, 1 * BYTE_HEIGHT},
                              {2 * LCD_WIDTH / 3, 1 * BYTE_HEIGHT},};
-  const char* hardware = "Board   : BIGTREETECH_" HARDWARE_VERSION;
-  const char* firmware = "Firmware: "HARDWARE_VERSION"." STRINGIFY(SOFTWARE_VERSION) " " __DATE__;
+  const char* hardware = "Board   : " HARDWARE_VERSION;
+  const char* firmware = "Firmware: " STRINGIFY(SOFTWARE_VERSION) " - " __DATE__;
 
   u16 HW_X = (LCD_WIDTH - GUI_StrPixelWidth((u8 *)hardware))/2;
   u16 FW_X = (LCD_WIDTH - GUI_StrPixelWidth((u8 *)firmware))/2;
