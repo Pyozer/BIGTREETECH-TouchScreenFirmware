@@ -101,6 +101,7 @@
     #define HU_1_MM                 "1mm"
     #define HU_5_MM                 "5mm"
     #define HU_10_MM                "10mm"
+    #define HU_100_MM               "100mm"
     #define HU_1_PERCENT            "1%"
     #define HU_5_PERCENT            "5%"
     #define HU_10_PERCENT           "10%"

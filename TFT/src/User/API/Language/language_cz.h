@@ -101,6 +101,7 @@
     #define CZ_1_MM                 "1mm"
     #define CZ_5_MM                 "5mm"
     #define CZ_10_MM                "10mm"
+    #define CZ_100_MM               "100mm"
     #define CZ_1_PERCENT            "1%"
     #define CZ_5_PERCENT            "5%"
     #define CZ_10_PERCENT           "10%"

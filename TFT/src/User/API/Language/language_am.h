@@ -101,6 +101,7 @@
     #define AM_1_MM                 "1mm"
     #define AM_5_MM                 "5mm"
     #define AM_10_MM                "10mm"
+    #define AM_100_MM               "100mm"
     #define AM_1_PERCENT            "1%"
     #define AM_5_PERCENT            "5%"
     #define AM_10_PERCENT           "10%"
@@ -186,5 +187,6 @@
     #define AM_300_SECONDS              "5 Min."
     #define AM_CUSTOM_SECONDS           "Custom"
     #define AM_ST7920_FULLSCREEN        "Marlin mode in fullscreen"
+    #define FR_EMPTY                    " "
 
 #endif

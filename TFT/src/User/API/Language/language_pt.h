@@ -101,6 +101,7 @@
     #define PT_1_MM                 "1mm"
     #define PT_5_MM                 "5mm"
     #define PT_10_MM                "10mm"
+    #define PT_100_MM               "100mm"
     #define PT_1_PERCENT            "1%"
     #define PT_5_PERCENT            "5%"
     #define PT_10_PERCENT           "10%"

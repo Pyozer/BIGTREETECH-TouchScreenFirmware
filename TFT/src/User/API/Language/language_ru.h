@@ -101,6 +101,7 @@
     #define RU_1_MM                   "1мм"
     #define RU_5_MM                   "5мм"
     #define RU_10_MM                  "10мм"
+    #define RU_100_MM                 "100мм"
     #define RU_1_PERCENT              "1%"
     #define RU_5_PERCENT              "5%"
     #define RU_10_PERCENT             "10%"
