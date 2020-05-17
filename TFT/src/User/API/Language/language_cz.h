@@ -20,6 +20,8 @@
     #define CZ_GCODE                "Gcode"
     #define CZ_TERMINAL             "Terminal"
     #define CZ_CUSTOM               "Vlastní"
+    #define CZ_PID_E0               "PID E0"
+    #define CZ_PID_BED              "PID Bed"
     #define CZ_LEVELING             "Srovnat"
     #define CZ_POINT_1              "Bod 1"
     #define CZ_POINT_2              "Bod 2"

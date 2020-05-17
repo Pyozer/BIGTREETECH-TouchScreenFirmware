@@ -20,6 +20,8 @@
     #define EN_GCODE                  "Gcode"
     #define EN_TERMINAL             "Terminal"
     #define EN_CUSTOM                 "Custom"
+    #define EN_PID_E0                 "PID E0"
+    #define EN_PID_BED                "PID Bed"
     #define EN_LEVELING               "Leveling"
     #define EN_POINT_1                "Point 1"
     #define EN_POINT_2                "Point 2"

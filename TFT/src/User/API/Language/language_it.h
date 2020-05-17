@@ -20,6 +20,8 @@
     #define IT_GCODE                "Gcode"
     #define IT_TERMINAL             "Terminal"
     #define IT_CUSTOM               "Custom"
+    #define IT_PID_E0               "PID E0"
+    #define IT_PID_BED              "PID Bed"
     #define IT_LEVELING             "Livella"
     #define IT_POINT_1              "Punto 1"
     #define IT_POINT_2              "Punto 2"

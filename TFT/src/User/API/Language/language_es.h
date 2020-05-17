@@ -20,6 +20,8 @@
     #define ES_GCODE                "Gcode"
     #define ES_TERMINAL             "Terminal"
     #define ES_CUSTOM               "Personalizar"
+    #define ES_PID_E0               "PID E0"
+    #define ES_PID_BED              "PID Bed"
     #define ES_LEVELING             "Nivelar"
     #define ES_POINT_1              "Punto 1"
     #define ES_POINT_2              "Punto 2"

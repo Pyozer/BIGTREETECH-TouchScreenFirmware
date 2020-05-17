@@ -20,6 +20,8 @@
     #define DU_GCODE                "Gcode"
     #define DU_TERMINAL             "Terminal"
     #define DU_CUSTOM               "Aangepast"
+    #define DU_PID_E0               "PID E0"
+    #define DU_PID_BED              "PID Bed"
     #define DU_LEVELING             "Nivelleren"
     #define DU_POINT_1              "Punt 1"
     #define DU_POINT_2              "Punt 2"

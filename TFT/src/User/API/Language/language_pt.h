@@ -20,6 +20,8 @@
     #define PT_GCODE                "Gcode"
     #define PT_TERMINAL             "Terminal"
     #define PT_CUSTOM               "Custom"
+    #define PT_PID_E0               "PID E0"
+    #define PT_PID_BED              "PID Bed"
     #define PT_LEVELING             "Nivelar"
     #define PT_POINT_1              "Ponto 1"
     #define PT_POINT_2              "Ponto 2"

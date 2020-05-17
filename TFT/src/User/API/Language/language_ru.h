@@ -20,6 +20,8 @@
     #define RU_GCODE                  "G-коды"
     #define RU_TERMINAL               "Терминал"
     #define RU_CUSTOM                 "Своё меню"
+    #define RU_PID_E0                 "PID E0"
+    #define RU_PID_BED                "PID Bed"
     #define RU_LEVELING               "Равнение"
     #define RU_POINT_1                "Точка 1"
     #define RU_POINT_2                "Точка 2"

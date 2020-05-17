@@ -20,6 +20,8 @@
     #define JP_GCODE                "Gcode"
     #define JP_TERMINAL             "Terminal"
     #define JP_CUSTOM               "Custom"
+    #define JP_PID_E0               "PID E0"
+    #define JP_PID_BED              "PID Bed"
     #define JP_LEVELING             "Leveling"
     #define JP_POINT_1              "Point 1"
     #define JP_POINT_2              "Point 2"

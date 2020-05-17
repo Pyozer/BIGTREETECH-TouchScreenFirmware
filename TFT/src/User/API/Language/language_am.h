@@ -20,6 +20,8 @@
     #define AM_GCODE                "Gcode"
     #define AM_TERMINAL             "Terminal"
     #define AM_CUSTOM               "Custom"
+    #define AM_PID_E0               "PID E0"
+    #define AM_PID_BED              "PID Bed"
     #define AM_LEVELING             "Leveling"
     #define AM_POINT_1              "Point 1"
     #define AM_POINT_2              "Point 2"

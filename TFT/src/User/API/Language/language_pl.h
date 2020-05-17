@@ -20,6 +20,8 @@
     #define PL_GCODE                "Gcode"
     #define PL_TERMINAL             "Terminal"
     #define PL_CUSTOM               "Własne"
+    #define PL_PID_E0               "PID E0"
+    #define PL_PID_BED              "PID Bed"
     #define PL_LEVELING             "Poziomowanie"
     #define PL_POINT_1              "Punkt 1"
     #define PL_POINT_2              "Punkt 2"

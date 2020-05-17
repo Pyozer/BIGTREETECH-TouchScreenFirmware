@@ -20,6 +20,8 @@
     #define HU_GCODE                "G-Kód"
     #define HU_TERMINAL             "Terminal"
     #define HU_CUSTOM               "Egyedi"
+    #define HU_PID_E0               "PID E0"
+    #define HU_PID_BED              "PID Bed"
     #define HU_LEVELING             "Szintezés"
     #define HU_POINT_1              "1. pont"
     #define HU_POINT_2              "2. pont"

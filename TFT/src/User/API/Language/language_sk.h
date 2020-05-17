@@ -20,6 +20,8 @@
     #define SK_GCODE                "Gcode"
     #define SK_TERMINAL             "Terminal"
     #define SK_CUSTOM               "Vlastné"
+    #define SK_PID_E0               "PID E0"
+    #define SK_PID_BED              "PID Bed"
     #define SK_LEVELING             "Vyrovnanie"
     #define SK_POINT_1              "Bod 1"
     #define SK_POINT_2              "Bod 2"

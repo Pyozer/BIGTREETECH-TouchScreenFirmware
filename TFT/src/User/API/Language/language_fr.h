@@ -20,6 +20,8 @@
     #define FR_GCODE                "Gcode"
     #define FR_TERMINAL             "Terminal"
     #define FR_CUSTOM               "Custom"
+    #define FR_PID_E0               "PID E0"
+    #define FR_PID_BED              "PID Bed"
     #define FR_LEVELING             "Niveaux"
     #define FR_POINT_1              "Point 1"
     #define FR_POINT_2              "Point 2"

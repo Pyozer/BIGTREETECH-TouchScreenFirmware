@@ -204,8 +204,8 @@ void menuMachineSettings(void)
     {ICON_RGB_SETTINGS,         LABEL_RGB_SETTINGS},
     {ICON_RGB_OFF,              LABEL_RGB_OFF},
     {ICON_SHUT_DOWN,            LABEL_SHUT_DOWN},
-    {ICON_BACKGROUND,           LABEL_BACKGROUND},
-    {ICON_BACKGROUND,           LABEL_BACKGROUND},
+    {ICON_PID_AUTO,             LABEL_PID_E0},
+    {ICON_PID_AUTO,             LABEL_PID_BED},
     {ICON_BACKGROUND,           LABEL_BACKGROUND},
     {ICON_BACK,                 LABEL_BACK},}
   };
@@ -234,6 +234,16 @@ void menuMachineSettings(void)
 
       case KEY_ICON_3:
         storeCmd("M81\n"); // Shutdown power supply
+        break;
+
+      case KEY_ICON_4:
+        storeCmd("M106 S255\n"); // Turn on fan 100%
+        storeCmd("M303 E0 S200 C8\n"); // Start PID autotune hotend
+        storeCmd("M106 S0\n"); // Turn off fan
+        break;
+
+      case KEY_ICON_5:
+        storeCmd("M303 E-1 S60 C10\n"); // Start PID autotune bed
         break;
 
       case KEY_ICON_7:

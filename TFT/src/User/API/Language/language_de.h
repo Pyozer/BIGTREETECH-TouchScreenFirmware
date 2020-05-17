@@ -20,6 +20,8 @@
     #define DE_GCODE                "Gcode"
     #define DE_TERMINAL             "Terminal"
     #define DE_CUSTOM               "Extras"
+    #define DE_PID_E0               "PID E0"
+    #define DE_PID_BED              "PID Bed"
     #define DE_LEVELING             "Leveling"
     #define DE_POINT_1              "Punkt 1"
     #define DE_POINT_2              "Punkt 2"

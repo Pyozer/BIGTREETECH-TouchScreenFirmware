@@ -20,6 +20,8 @@
     #define CN_GCODE                "Gcode"
     #define CN_TERMINAL             "Terminal"
     #define CN_CUSTOM               "自定义"
+    #define CN_PID_E0               "PID E0"
+    #define CN_PID_BED              "PID Bed"
     #define CN_LEVELING             "调平"
     #define CN_POINT_1              "第一点"
     #define CN_POINT_2              "第二点"
