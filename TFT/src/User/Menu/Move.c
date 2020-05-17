@@ -43,7 +43,7 @@ LABEL_MOVE,
 
 //const uint32_t item_move_speed[] = {DEFAULT_SPEED_MOVE, SPEED_MOVE_SLOW, SPEED_MOVE_FAST};
 
-#define ITEM_MOVE_LEN_NUM 3
+#define ITEM_MOVE_LEN_NUM 4
 const ITEM itemMoveLen[ITEM_MOVE_LEN_NUM] = {
 // icon                       label
   {ICON_01_MM,                LABEL_01_MM},
