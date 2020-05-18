@@ -293,7 +293,7 @@ void resetConfig(void)
   // write restored config
   writeConfig((uint8_t *)&tempCG, sizeof(CUSTOM_GCODES), CUSTOM_GCODE_ADDR, CUSTOM_GCODE_MAX_SIZE);
   writeConfig((uint8_t *)&tempPC, sizeof(PRINT_GCODES), PRINT_GCODES_ADDR, PRINT_GCODES_MAX_SIZE);
-  writeConfig((uint8_t *)&tempPC, sizeof(STRINGS_STORE), STRINGS_STORE_ADDR, STRINGS_STORE_MAX_SIZE);
+  writeConfig((uint8_t *)&tempST, sizeof(STRINGS_STORE), STRINGS_STORE_ADDR, STRINGS_STORE_MAX_SIZE);
 }
 
 void drawProgressPage(void)
@@ -369,62 +369,57 @@ void parseConfigKey(u16 index)
   {
   case C_INDEX_UNIFIEDMENU:
       infoSettings.unified_menu = getOnOff();
-  break;
+    break;
 
   case C_INDEX_UART_BAUDRATE:
     if (inLimit(config_value(),0,ITEM_BAUDRATE_NUM-1))
       infoSettings.baudrate = item_baudrate[config_value()];
-  break;
+    break;
 
   case C_INDEX_LANGUAGE:
     if (inLimit(config_value(), 0, LANGUAGE_NUM-1))
       infoSettings.language = config_value();
-  break;
+    break;
 
   case C_INDEX_TITLE_BG:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.title_bg_color = config_value();
-  break;
+    break;
 
   case C_INDEX_MENU_BG_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.bg_color = config_value();
-  break;
+    break;
 
   case C_INDEX_MENU_FONT_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.font_color = config_value();
-  break;
+    break;
 
   case C_INDEX_NOTIFY_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.reminder_color = config_value();
-  break;
+    break;
 
   case C_INDEX_SD_NOTIFY_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.sd_reminder_color = config_value();
-  break;
+    break;
 
   case C_INDEX_SS_XYZ_BG_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.status_xyz_bg_color = config_value();
-  break;
+    break;
 
   case C_INDEX_LIST_BORDER_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.list_border_color = config_value();
-  break;
+    break;
 
   case C_INDEX_LIST_BUTTON_BG_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.list_button_color = config_value();
-  break;
-
-  case C_INDEX_MODE:
-    if (inLimit(config_value(), 0, MODE_COUNT-1))
-      infoSettings.mode = config_value();
-  break;
+    break;
 
   case C_INDEX_ROTATE_UI:
       if (infoSettings.rotate_ui != getOnOff())
@@ -455,20 +450,31 @@ void parseConfigKey(u16 index)
   break;
 
   //---------------------------------------------------------Marlin Mode Settings (Only for TFT35_V3.0/TFT24_V1.1/TFT28V3.0)
+
 #ifdef ST7920_SPI
+
+  case C_INDEX_MODE:
+    if (inLimit(config_value(), 0, MODE_COUNT-1))
+      infoSettings.mode = config_value();
+    break;
+
+  case C_INDEX_SERIAL_ON:
+      infoSettings.serial_alwaysOn = getOnOff();
+    break;
+
   case C_INDEX_MARLIN_BG_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.marlin_mode_bg_color = config_value();
-  break;
+    break;
 
   case C_INDEX_MARLIN_FONT_COLOR:
     if (inLimit(config_value(), 0, LCD_COLOR_COUNT-1))
       infoSettings.marlin_mode_font_color = config_value();
-  break;
+    break;
 
   case C_INDEX_MARLIN_SHOW_TITLE:
       infoSettings.marlin_mode_showtitle = getOnOff();
-  break;
+    break;
 
   case C_INDEX_MARLIN_TITLE:
     {
@@ -479,25 +485,26 @@ void parseConfigKey(u16 index)
       if (inLimit(utf8len,NAME_MIN_LENGTH,MAX_STRING_LENGTH) && inLimit(bytelen,NAME_MIN_LENGTH,MAX_GCODE_LENGTH))
         strcpy(configStringsStore->marlin_title, pchr);
     }
-  break;
+    break;
 
-#endif
+#endif //ST7920_SPI
+
   //---------------------------------------------------------Printer / Machine Settings
 
   case C_INDEX_TOOL_COUNT:
     if (inLimit(config_value(), 1, MAX_TOOL_COUNT))
       infoSettings.tool_count = config_value();
-  break;
+    break;
 
   case C_INDEX_EXT_COUNT:
     if (inLimit(config_value(), 1, MAX_EXT_COUNT))
       infoSettings.ext_count = config_value();
-  break;
+    break;
 
   case C_INDEX_FAN_COUNT:
     if (inLimit(config_value(), 1, MAX_TOOL_COUNT))
       infoSettings.fan_count = config_value();
-  break;
+    break;
 
   case C_INDEX_MAX_TEMP:
     if (key_seen("BED:"))
@@ -528,12 +535,12 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_TOOL_TEMP, MAX_TOOL_TEMP))
         infoSettings.max_temp[BED + 6] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_MIN_TEMP:
     if (inLimit(config_value(), 25, MAX_TOOL_TEMP))
       infoSettings.min_ext_temp = config_value();
-  break;
+    break;
 
   case C_INDEX_FAN_MAX:
     if (key_seen("F0:"))
@@ -560,7 +567,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_FAN_SPEED, MAX_FAN_SPEED))
         infoSettings.fan_max[5] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_BUILD_MIN:
     if (key_seen("X"))
@@ -575,7 +582,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(),  MIN_SIZE_LIMIT, MAX_SIZE_LIMIT))
         infoSettings.machine_size_min[Z_AXIS] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_BUILD_MAX:
     if (key_seen("X"))
@@ -590,7 +597,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(),  MIN_SIZE_LIMIT, MAX_SIZE_LIMIT))
         infoSettings.machine_size_max[Z_AXIS] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_MOVE_SPEED:
     if (key_seen("S"))
@@ -605,7 +612,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_SPEED_LIMIT, MAX_SPEED_LIMIT))
         infoSettings.axis_speed[2] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_EXT_SPEED:
     if (key_seen("S"))
@@ -620,24 +627,40 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_SPEED_LIMIT, MAX_SPEED_LIMIT))
         infoSettings.ext_speed[2] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_AUTO_LEVEL:
       infoSettings.auto_load_leveling = getOnOff();
-  break;
+    break;
+
+  case C_INDEX_ONBOARD_SD:
+    {
+      u8 i = config_value();
+      if (inLimit(i,0,2))
+        infoSettings.onboardSD = i;
+      break;
+    }
 
   case C_INDEX_M27_DELAY:
     if (inLimit(config_value(), MIN_DELAY_SEC, MAX_DELAY_SEC))
       infoSettings.m27_refresh_time = config_value();
-  break;
+    break;
 
   case C_INDEX_M27_KEEP_ON:
       infoSettings.m27_active = getOnOff();
-  break;
+    break;
+
+  case C_INDEX_LONG_FILENAME:
+    {
+      u8 i = config_value();
+      if (inLimit(i,0,2))
+        infoSettings.longFileName = i;
+      break;
+    }
 
   case C_INDEX_FAN_PERCENT:
       infoSettings.fan_percentage = getOnOff();
-  break;
+    break;
 
   case C_INDEX_PAUSE_RETRACT:
     if (key_seen("R"))
@@ -648,7 +671,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_float(), MIN_RETRACT_LIMIT, MAX_RETRACT_LIMIT))
         infoSettings.resume_purge_len = config_float();
     }
-  break;
+    break;
 
   case C_INDEX_PAUSE_POS:
     if (key_seen("X"))
@@ -659,12 +682,12 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_float(), MIN_POS_LIMIT, MAX_SIZE_LIMIT))
         infoSettings.pause_pos[Y_AXIS] = config_float();
     }
-  break;
+    break;
 
   case C_INDEX_PAUSE_Z_RAISE:
     if (inLimit(config_float(), MIN_POS_LIMIT, MAX_SIZE_LIMIT))
       infoSettings.pause_z_raise = config_float();
-  break;
+    break;
 
   case C_INDEX_PAUSE_FEEDRATE:
     if (key_seen("X"))
@@ -683,22 +706,22 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_SPEED_LIMIT, MAX_SPEED_LIMIT))
         infoSettings.pause_feedrate[3] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_LEVEL_EDGE:
     if (inLimit(config_value(), MIN_POS_LIMIT, MAX_SIZE_LIMIT))
       infoSettings.level_edge = config_value();
-  break;
+    break;
 
   case C_INDEX_LEVEL_Z_POS:
     if (inLimit(config_float(), MIN_POS_LIMIT, MAX_SIZE_LIMIT))
       infoSettings.level_z_pos = config_float();
-  break;
+    break;
 
   case C_INDEX_LEVEL_Z_RAISE:
     if (inLimit(config_float(), MIN_POS_LIMIT, MAX_SIZE_LIMIT))
       infoSettings.level_z_raise = config_float();
-  break;
+    break;
 
   case C_INDEX_LEVEL_FEEDRATE:
     if (key_seen("X"))
@@ -713,7 +736,7 @@ void parseConfigKey(u16 index)
     { if (inLimit(config_value(), MIN_SPEED_LIMIT, MAX_SPEED_LIMIT))
         infoSettings.level_feedrate[2] = config_value();
     }
-  break;
+    break;
 
   case C_INDEX_PREHEAT_NAME_1:
   case C_INDEX_PREHEAT_NAME_2:
@@ -727,23 +750,23 @@ void parseConfigKey(u16 index)
       strcpy(configStringsStore->preheat_name[index - C_INDEX_PREHEAT_NAME_1], pchr);
   }
 
-  break;
+    break;
 
   case C_INDEX_PREHEAT_TEMP_1:
   case C_INDEX_PREHEAT_TEMP_2:
   case C_INDEX_PREHEAT_TEMP_3:
     {
         int val_index = index - C_INDEX_PREHEAT_TEMP_1;
-      if (key_seen("B:"))
+      if (key_seen("B"))
       { if (inLimit(config_value(), MIN_BED_TEMP, MAX_BED_TEMP))
           infoSettings.preheat_bed[val_index] = config_value();
       }
-      if (key_seen("T:"))
+      if (key_seen("T"))
       { if (inLimit(config_value(), MIN_TOOL_TEMP, MAX_TOOL_TEMP))
-          infoSettings.preheat_bed[val_index] = config_value();
+          infoSettings.preheat_temp[val_index] = config_value();
       }
     }
-  break;
+    break;
 
   //---------------------------------------------------------Power Supply Settings (if connected to TFT Controller):
 
@@ -793,7 +816,7 @@ void parseConfigKey(u16 index)
 #ifdef FIL_RUNOUT_PIN
   case C_INDEX_RUNOUT:
       infoSettings.runout = getOnOff();
-  break;
+    break;
 
   case C_INDEX_RUNOUT_LOGIC:
       infoSettings.runout_invert = getOnOff();
@@ -826,22 +849,22 @@ void parseConfigKey(u16 index)
   case C_INDEX_KNOB_COLOR:
     if (inLimit(config_value(), 0, LED_COLOR_NUM-1))
       infoSettings.knob_led_color = config_value();
-  break;
+    break;
 #endif
 
 #ifdef LCD_LED_PWM_CHANNEL
   case C_INDEX_BRIGHTNESS:
     if (inLimit(config_value(), 0, ITEM_BRIGHTNESS_NUM-1))
       infoSettings.lcd_brightness = config_value();
-  break;
+    break;
   case C_INDEX_BRIGHTNESS_IDLE:
     if (inLimit(config_value(), 0, ITEM_BRIGHTNESS_NUM-1))
       infoSettings.lcd_idle_brightness = config_value();
-  break;
+    break;
   case C_INDEX_BRIGHTNESS_IDLE_DELAY:
     if (inLimit(config_value(), 0, ITEM_SECONDS_NUM-1))
       infoSettings.lcd_idle_timer = config_value();
-  break;
+    break;
 #endif
   //---------------------------------------------------------CustomG-Code Commands upto 15 custom G-code
   case C_INDEX_CUSTOM_LABEL_1:
@@ -873,7 +896,7 @@ void parseConfigKey(u16 index)
       {
         customcode_good[index - C_INDEX_CUSTOM_LABEL_1] = 0;//set name was not ok
       }
-  break;
+    break;
     }
   case C_INDEX_CUSTOM_GCODE_1:
   case C_INDEX_CUSTOM_GCODE_2:
@@ -903,7 +926,7 @@ void parseConfigKey(u16 index)
         {
           customcode_index--;
         }
-  break;
+    break;
     }
   //---------------------------------------------------------Start, End & Cancel G-codes
   case C_INDEX_START_GCODE_ON:
@@ -912,6 +935,10 @@ void parseConfigKey(u16 index)
 
   case C_INDEX_END_GOCODE_ON:
         infoSettings.send_end_gcode = getOnOff();
+    break;
+
+  case C_INDEX_CANCEL_GOCODE_ON:
+        infoSettings.send_cancel_gcode = getOnOff();
     break;
 
   case C_INDEX_START_GCODE:
@@ -925,7 +952,7 @@ void parseConfigKey(u16 index)
       }
 
     }
-  break;
+    break;
   case C_INDEX_END_GCODE:
     {
       char * pchr;
@@ -937,7 +964,7 @@ void parseConfigKey(u16 index)
       }
 
     }
-  break;
+    break;
   case C_INDEX_CANCEL_GCODE:
     {
       char * pchr;
@@ -949,7 +976,7 @@ void parseConfigKey(u16 index)
       }
 
     }
-  break;
+    break;
 
   default:
     break;

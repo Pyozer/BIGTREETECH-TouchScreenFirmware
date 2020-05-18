@@ -26,6 +26,10 @@
 #define MIN_LABEL_LENGTH      3
 #define MIN_GCODE_LENGTH      3
 
+#define DISABLED  0
+#define ENABLED   1
+#define AUTO      2
+
 typedef enum
 {
   SERIAL_TSC = 0,
@@ -64,6 +68,7 @@ typedef struct
   uint8_t  lcd_idle_brightness;
   uint8_t  lcd_idle_timer;
 
+  uint8_t  serial_alwaysOn;
   uint8_t  marlin_mode_bg_color;
   uint8_t  marlin_mode_font_color;
   uint8_t  marlin_mode_showtitle;
@@ -91,8 +96,10 @@ typedef struct
   uint16_t  ext_count;
   uint8_t   fan_count;
   uint8_t   auto_load_leveling;
+  uint8_t   onboardSD;
   uint8_t   m27_refresh_time;
   uint8_t   m27_active;
+  uint8_t   longFileName;
   uint16_t  max_temp[HEAT_NUM];  //Tool count + bed
   uint16_t  min_ext_temp;
   uint8_t   fan_max[MAX_TOOL_COUNT];
@@ -138,6 +145,7 @@ char     cancel_gcode[MAX_GCODE_LENGTH+1];
 
 typedef struct
 {
+  uint8_t isMarlinFirmware;
   uint8_t EEPROM;
   uint8_t autoReportTemp;
   uint8_t autoLevel;
@@ -149,6 +157,7 @@ typedef struct
   uint8_t emergencyParser;
   uint8_t promptSupport;
   uint8_t onboard_sd_support;
+  uint8_t long_filename_support;
   uint8_t autoReportSDStatus;
   uint8_t babyStepping;
 }MACHINESETTINGS;

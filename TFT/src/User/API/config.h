@@ -29,6 +29,7 @@
 #define CONFIG_LIST_MODE            "files_list_mode:"
 //-----------------------------Marlin Mode Settings (Only for TFT35_V3.0/TFT24_V1.1/TFT28V3.0)
 #define CONFIG_MODE                 "default_mode:"
+#define CONFIG_SERIAL_ON            "serial_always_on:"
 #define CONFIG_MARLIN_BG_COLOR      "marlin_bg_color:"
 #define CONFIG_MARLIN_FONT_COLOR    "marlin_fn_color:"
 #define CONFIG_MARLIN_SHOW_TITLE    "marlin_show_title:"
@@ -46,8 +47,10 @@
 #define CONFIG_MOVE_SPEED           "move_speed:"
 #define CONFIG_EXT_SPEED            "ext_speed:"
 #define CONFIG_AUTO_LEVEL           "auto_load_leveling:"
+#define CONFIG_ONBOARD_SD           "onboard_sd_support:"
 #define CONFIG_M27_DELAY            "M27_refresh_time:"
 #define CONFIG_M27_KEEP_ON          "M27_always_active:"
+#define CONFIG_LONG_FILENAME        "long_filename_support:"
 #define CONFIG_FAN_PERCENT          "fan_speed_percent:"
 #define CONFIG_PAUSE_RETRACT        "pause_retract:"
 #define CONFIG_PAUSE_POS            "pause_pos:"
@@ -116,6 +119,7 @@
 //-----------------------------Start, End & Cancel G-codes
 #define CONFIG_START_GCODE_ON   "start_gcode_enabled:"
 #define CONFIG_END_GOCODE_ON    "end_gcode_enabled:"
+#define CONFIG_CANCEL_GOCODE_ON "cancel_gcode_enabled:"
 #define CONFIG_START_GCODE      "start_gcode:"
 #define CONFIG_END_GCODE        "end_gcode:"
 #define CONFIG_CANCEL_GCODE     "cancel_gcode:"
