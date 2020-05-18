@@ -15,18 +15,16 @@ LABEL_EXTRUDE,
   {ICON_E_5_MM,               LABEL_5_MM},
   {ICON_BACK,                 LABEL_BACK},}
 };
-
 static u8  item_extruder_i = 0;
 
-#define ITEM_SPEED_NUM 3
-const ITEM itemSpeed[ITEM_SPEED_NUM] = {
+#define ITEM_EXT_SPEED_NUM 3
+const ITEM itemExtSpeed[ITEM_EXT_SPEED_NUM] = {
 // icon                       label
   {ICON_SLOW_SPEED,           LABEL_SLOW_SPEED},
   {ICON_NORMAL_SPEED,         LABEL_NORMAL_SPEED},
   {ICON_FAST_SPEED,           LABEL_FAST_SPEED},
 };
-
-static u8  item_speed_i = 1;
+static u8  item_ext_speed_i = 1;
 
 #define ITEM_LEN_NUM 3
 const ITEM itemLen[ITEM_LEN_NUM] = {
@@ -99,8 +97,8 @@ void menuExtrude(void)
         break;
 
       case KEY_ICON_5:
-        item_speed_i = (item_speed_i+1) % ITEM_SPEED_NUM;
-        extrudeItems.items[key_num] = itemSpeed[item_speed_i];
+        item_ext_speed_i = (item_ext_speed_i+1) % ITEM_EXT_SPEED_NUM;
+        extrudeItems.items[key_num] = itemExtSpeed[item_ext_speed_i];
         menuDrawItem(&extrudeItems.items[key_num], key_num);
         break;
 
@@ -131,7 +129,7 @@ void menuExtrude(void)
       extrudeCoordinateReDraw();
       if(item_extruder_i != heatGetCurrentToolNozzle() - NOZZLE0)
         storeCmd("%s\n", tool_change[item_extruder_i]);
-      storeCmd("G0 E%.5f F%d\n", extrudeCoordinate, infoSettings.ext_speed[item_speed_i]);
+      storeCmd("G0 E%.5f F%d\n", extrudeCoordinate, infoSettings.ext_speed[item_ext_speed_i]);
     }
     loopProcess();
   }

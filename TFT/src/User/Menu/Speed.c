@@ -39,6 +39,16 @@ const ITEM itemPercentUnit[ITEM_PERCENT_UNIT_NUM] = {
 const  u8 item_percent_unit[ITEM_PERCENT_UNIT_NUM] = {1, 5, 10};
 static u8 item_percent_unit_i = 1;
 
+#define ITEM_SPEED_NUM 3
+const ITEM itemSpeed[ITEM_SPEED_NUM] = {
+// icon                       label
+  {ICON_SLOW_SPEED,           LABEL_SLOW_SPEED},
+  {ICON_NORMAL_SPEED,         LABEL_NORMAL_SPEED},
+  {ICON_FAST_SPEED,           LABEL_FAST_SPEED},
+};
+const  u8 item_speed_unit[ITEM_SPEED_NUM] = {50, 100, 200};
+static u8 item_speed_i = 1;
+
 static bool send_waiting[ITEM_PERCENTAGE_NUM];
 
 void speedSetSendWaiting(u8 tool, bool isWaiting)
@@ -123,7 +133,10 @@ void menuSpeed(void)
         menuDrawItem(&percentageItems.items[key_num], key_num);
         break;
       case KEY_ICON_6:
-        percentage[item_percentage_i] = 100;
+        item_speed_i = (item_speed_i + 1) % ITEM_SPEED_NUM;
+        percentageItems.items[key_num] = itemSpeed[item_speed_i];
+        menuDrawItem(&percentageItems.items[key_num], key_num);
+        percentage[item_percentage_i] = item_speed_unit[item_speed_i];
         break;
       case KEY_ICON_7:
         infoMenu.cur--;
