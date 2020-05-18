@@ -60,8 +60,8 @@
     #error "TOOL_NUM can not be more than 6"
 #endif
 
-#if EXT_NUM > MAX_TOOL_COUNT
-    #error "EXT_NUM can not be more than 6"
+#if EXTRUDER_NUM > MAX_EXT_COUNT
+    #error "EXTRUDER_NUM can not be more than 6"
 #endif
 
 #if FAN_NUM > MAX_TOOL_COUNT

@@ -548,7 +548,7 @@ void menuPrinting(void)
   u32         time = 0;
   HEATER      nowHeat;
   float       curLayer = 0;
-  u8          nowFan[FAN_NUM] = {0};
+  u8          nowFan[MAX_FAN_COUNT] = {0};
   uint16_t    curspeed[2] = {0};
   memset(&nowHeat, 0, sizeof(HEATER));
 
@@ -709,6 +709,8 @@ void completePrinting(void)
 
 void abortPrinting(void)
 {
+  clearCmdQueue();
+
   switch (infoFile.source)
   {
     case BOARD_SD:
@@ -718,9 +720,7 @@ void abortPrinting(void)
     case TFT_UDISK:
     case TFT_SD:
       if (infoSettings.send_cancel_gcode == 1)
-        mustStoreCmd(PRINT_CANCEL_GCODE);
-
-      clearCmdQueue();
+        mustStoreCmd(printcodes->cancel_gcode);
       break;
   }
 

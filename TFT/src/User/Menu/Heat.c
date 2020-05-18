@@ -122,7 +122,7 @@ void heatClearIsWaiting(void)
 /* Set current heater tool, nozzle or hot bed */
 void heatSetCurrentTool(TOOL tool)
 {
-  if(tool >= infoSettings.tool_count) return;
+  if(tool >= infoSettings.tool_count + 1) return;
   heater.tool = tool;
 }
 /* Get current tool, nozzle or hot bed */
@@ -134,7 +134,7 @@ TOOL heatGetCurrentTool(void)
 /* Set current nozzle */
 void heatSetCurrentToolNozzle(TOOL tool)
 {
-  if(tool >= infoSettings.tool_count && tool < NOZZLE0) return;
+  if(tool >= infoSettings.tool_count + 1 && tool < NOZZLE0) return;
   heater.nozzle = tool;
   heater.tool = tool;
 }
@@ -316,7 +316,7 @@ void loopCheckHeater(void)
   }while(0);
 
   /* Query the heater that needs to wait for the temperature to rise, whether it reaches the set temperature */
-  for(u8 i=0; i < infoSettings.tool_count + 1; i++)
+  for(u8 i = 0; i < infoSettings.tool_count + 1; i++)
   {
     if (heater.T[i].waiting == WAIT_NONE)                              continue;
     else if (heater.T[i].waiting == WAIT_HEATING) {

@@ -11,9 +11,10 @@
 
 #define MAX_EXT_COUNT         6
 #define MAX_TOOL_COUNT        6
+#define MAX_FAN_COUNT         6
+#define MAX_HEATER_COUNT      (MAX_TOOL_COUNT + 1)
 
 #define AXIS_NUM              (TOTAL_AXIS - 1)
-#define HEAT_NUM              (MAX_TOOL_COUNT + 1)
 #define SPEED_COUNT           3
 #define PREHEAT_COUNT         3
 #define CUSTOM_GCODES_COUNT   15
@@ -100,9 +101,9 @@ typedef struct
   uint8_t   m27_refresh_time;
   uint8_t   m27_active;
   uint8_t   longFileName;
-  uint16_t  max_temp[HEAT_NUM];  //Tool count + bed
+  uint16_t  max_temp[MAX_HEATER_COUNT];  //Tool count + bed
   uint16_t  min_ext_temp;
-  uint8_t   fan_max[MAX_TOOL_COUNT];
+  uint8_t   fan_max[MAX_FAN_COUNT];
   uint8_t   fan_percentage;
   uint16_t  machine_size_min[AXIS_NUM];  // X, Y, Z
   uint16_t  machine_size_max[AXIS_NUM];  // X, Y, Z

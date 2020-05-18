@@ -273,7 +273,7 @@ void toggleTool(void)
   {
     if (infoSettings.tool_count > 1)
     {
-      current_Ext = (TOOL)((current_Ext + 1) % infoSettings.tool_count + 1);
+      current_Ext = (TOOL)((current_Ext + 1) % (infoSettings.tool_count + 1));
       if (current_Ext == 0)
       {
         current_Ext += 1;
