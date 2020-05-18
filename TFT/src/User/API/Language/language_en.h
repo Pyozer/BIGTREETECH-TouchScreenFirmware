@@ -187,6 +187,5 @@
     #define EN_300_SECONDS              "5 Min."
     #define EN_CUSTOM_SECONDS           "Custom"
     #define EN_ST7920_FULLSCREEN        "Marlin mode in fullscreen"
-    #define EN_EMPTY                    " "
 
 #endif

@@ -35,9 +35,9 @@ void menuPreheat(void)
   LABEL_PREHEAT,
     // icon                       label
     {
-      {ICON_PREHEAT_PLA,          LABEL_EMPTY},
-      {ICON_PREHEAT_PETG,         LABEL_EMPTY},
-      {ICON_PREHEAT_ABS,          LABEL_EMPTY},
+      {ICON_PREHEAT_PLA,          LABEL_BACKGROUND},
+      {ICON_PREHEAT_PETG,         LABEL_BACKGROUND},
+      {ICON_PREHEAT_ABS,          LABEL_BACKGROUND},
       {ICON_BACKGROUND,           LABEL_BACKGROUND},
       {ICON_BACKGROUND,           LABEL_BACKGROUND},
       {ICON_PREHEAT_BOTH,         LABEL_PREHEAT_BOTH},
