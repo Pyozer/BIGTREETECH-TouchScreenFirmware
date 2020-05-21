@@ -239,15 +239,10 @@ void menuMachineSettings(void)
       case KEY_ICON_4:
         storeCmd("M106 P0 S255\n"); // Turn on fan 100%
         storeCmd("M303 E0 S205 C8 U1\n"); // Start PID autotune hotend
-        popupPauseForUser();
-        storeCmd("M107\n"); // Turn off fan
-        storeCmd("M500\n"); // Save
         break;
 
       case KEY_ICON_5:
         storeCmd("M303 E-1 S60 C8 U1\n"); // Start PID autotune bed
-        popupPauseForUser();
-        storeCmd("M500\n"); // Save
         break;
 
       case KEY_ICON_7:
