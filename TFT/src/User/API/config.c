@@ -37,6 +37,10 @@ const char *const config_keywords[CONFIG_COUNT] = {
 
 void getConfigFromFile(void)
 {
+  #ifdef CONFIG_DEBUG
+    Serial_ReSourceInit();
+  #endif
+
   configCustomGcodes = (CUSTOM_GCODES*)malloc(sizeof(CUSTOM_GCODES));
   configPrintGcodes = (PRINT_GCODES*)malloc(sizeof(PRINT_GCODES));
   configStringsStore = (STRINGS_STORE*)malloc(sizeof(STRINGS_STORE));
@@ -77,21 +81,21 @@ void getConfigFromFile(void)
       }
       configFile.cur++;
 
-      //
-      if (cur_char == '\n') //'\n' is end flag for each config line
+      if (cur_char == '\n')             // start parsing line after new line.
       {
-        comment_mode = false; //for new command
+        comment_mode = false;           //for new command
         comment_space = true;
         if (count != 0)
         {
           //cur_line[count++] = '\n';
           cur_line[count++] = '\0';
-          cur_line[count] = 0; //terminate string
-          PRINTDEBUG("\n");
-          PRINTDEBUG(cur_line);
+          cur_line[count] = 0;          //terminate string
           parseConfigLine();
           drawProgress();
-          count = 0; //clear buffer
+
+          PRINTDEBUG("\n");
+          PRINTDEBUG(cur_line);
+          count = 0;                    //clear buffer
         }
       }
       else if (count < LINE_MAX_CHAR - 2)
@@ -100,17 +104,24 @@ void getConfigFromFile(void)
           comment_mode = true;
         else
         {
-          if (comment_space && cur_char != ' ') //ignore ' ' space bytes
+          if (comment_space && cur_char != ' ')                    //ignore ' ' space bytes
             comment_space = false;
           if (!comment_mode && !comment_space && cur_char != '\r') //normal code
           {
-            if (cur_char == 'n' && last_char == '\\') //replace "\n" with new line char('\n')
+            if (cur_char == 'n' && last_char == '\\')              //replace "\n" with new line char('\n')
             {
               cur_char = '\n';
               count--;
             }
             cur_line[count++] = cur_char;
             last_char = cur_char;
+
+            if (configFile.cur == configFile.size)
+            {
+              cur_line[count++] = '\0';
+              cur_line[count] = 0;        //terminate string
+              parseConfigLine();          //start parsing at the end of the file.
+            }
           }
         }
       }
@@ -118,7 +129,7 @@ void getConfigFromFile(void)
     //store custom codes count
     configCustomGcodes->count = customcode_index;
 
-    PRINTDEBUG("\ngcode stored at 1:");
+    PRINTDEBUG("\nCustom gcode stored at 1:");
     PRINTDEBUG(configCustomGcodes->gcode[1]);
     if(scheduleRotate)
     {
@@ -158,7 +169,7 @@ static char key_seen(const char *keyStr)
 }
 
 // Get the int after config keyword.
-static u32 config_value(void)
+static int config_value(void)
 {
   return (strtol(&cur_line[c_index], NULL, 10));
 }
@@ -949,6 +960,12 @@ void parseConfigKey(u16 index)
       if (inLimit(len,GCODE_MIN_LENGTH,MAX_GCODE_LENGTH))
       {
         strcpy(configPrintGcodes->start_gcode, pchr);
+      #ifdef CONFIG_DEBUG
+        GUI_DispStringInRect(recterrortxt.x0, recterrortxt.y0 + (BYTE_HEIGHT * 2), recterrortxt.x1, recterrortxt.y1, (u8*)configPrintGcodes->start_gcode);
+        Delay_ms(1000);
+        Delay_ms(1000);
+
+      #endif
       }
 
     }
@@ -961,6 +978,11 @@ void parseConfigKey(u16 index)
       if (inLimit(len,GCODE_MIN_LENGTH,MAX_GCODE_LENGTH))
       {
         strcpy(configPrintGcodes->end_gcode, pchr);
+      #ifdef CONFIG_DEBUG
+        GUI_DispStringInRect(recterrortxt.x0, recterrortxt.y0 + (BYTE_HEIGHT * 2), recterrortxt.x1, recterrortxt.y1, (u8*)configPrintGcodes->end_gcode);
+        Delay_ms(1000);
+        Delay_ms(1000);
+      #endif
       }
 
     }
@@ -973,6 +995,11 @@ void parseConfigKey(u16 index)
       if (inLimit(len,GCODE_MIN_LENGTH,MAX_GCODE_LENGTH))
       {
         strcpy(configPrintGcodes->cancel_gcode, pchr);
+      #ifdef CONFIG_DEBUG
+        GUI_DispStringInRect(recterrortxt.x0, recterrortxt.y0 + (BYTE_HEIGHT * 2), recterrortxt.x1, recterrortxt.y1, (u8*)configPrintGcodes->cancel_gcode);
+        Delay_ms(1000);
+        Delay_ms(1000);
+      #endif
       }
 
     }

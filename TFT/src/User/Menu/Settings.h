@@ -11,8 +11,8 @@
 
 #define MAX_EXT_COUNT         6
 #define MAX_TOOL_COUNT        6
-#define MAX_FAN_COUNT         6
 #define MAX_HEATER_COUNT      (MAX_TOOL_COUNT + 1)
+#define MAX_FAN_COUNT         6
 
 #define AXIS_NUM              (TOTAL_AXIS - 1)
 #define SPEED_COUNT           3
@@ -30,6 +30,8 @@
 #define DISABLED  0
 #define ENABLED   1
 #define AUTO      2
+
+#define HEATER_COUNT (infoSettings.tool_count + 1)
 
 typedef enum
 {
@@ -93,8 +95,9 @@ typedef struct
 
 //machine specific settings
 
-  uint16_t  tool_count;
-  uint16_t  ext_count;
+  uint8_t   tool_count;
+  uint8_t   heater_count;
+  uint8_t   ext_count;
   uint8_t   fan_count;
   uint8_t   auto_load_leveling;
   uint8_t   onboardSD;
@@ -105,8 +108,8 @@ typedef struct
   uint16_t  min_ext_temp;
   uint8_t   fan_max[MAX_FAN_COUNT];
   uint8_t   fan_percentage;
-  uint16_t  machine_size_min[AXIS_NUM];  // X, Y, Z
-  uint16_t  machine_size_max[AXIS_NUM];  // X, Y, Z
+  int16_t   machine_size_min[AXIS_NUM];  // X, Y, Z
+  int16_t   machine_size_max[AXIS_NUM];  // X, Y, Z
   uint16_t  axis_speed[SPEED_COUNT];
   uint16_t  ext_speed[SPEED_COUNT];
   float     pause_retract_len;
